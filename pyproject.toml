@@ -32,7 +32,11 @@ classifiers = [
     "Typing :: Typed",
 ]
 dependencies = [
+    "aiohttp>=3.12.15",
     "fastapi>=0.116.1",
+    "motor>=3.7.1",
+    "redis==6.4.0",
+    "uvicorn>=0.35.0",
 ]
 
 [project.urls]
@@ -124,8 +128,8 @@ show_error_codes = true
 ignore_missing_imports = true
 
 [tool.pytest.ini_options]
-testpaths = ["tests", "src/tests"]
+testpaths = ["tests"]
 python_files = "test_*.py"
 python_classes = "Test*"
 python_functions = "test_*"
-addopts = "-v --cov=src --cov-report=xml"
+addopts = "-v --cov=core --cov-report=xml"
