@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  minecraft-forge:
+    image: '${JAVA_IMAGE}'
+    container_name: minecraft_forge_server
+    ports:
+      - "25565:25565"
+      - "25575:25575"
+    volumes:
+      - ./minecraft:/minecraft
+    working_dir: /minecraft
+    command: '${MINECRAFT_COMMAND}'
+    restart: unless-stopped
+
+  backup:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: minecraft_backup
+    volumes:
+      - ./minecraft:/minecraft:ro
+    restart: unless-stopped
+
+
